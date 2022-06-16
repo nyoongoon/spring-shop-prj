@@ -175,9 +175,12 @@ class ItemRepositoryTest {
         booleanBuilder.and(item.price.gt(price)); //greater than
 
         if(StringUtils.equals(itemSellStat, ItemSellStatus.SELL)){
+            // 상품의 판매상태가 SELL 일때만 booleanBuilder에 판매상태 조건을 동적으로 추가.
             booleanBuilder.and(item.itemSellStatus.eq(ItemSellStatus.SELL));
         }
 
+        //데이터를 페이징해 조회하도록 of()를 이용해 Pageable 객체 생성.
+        // 첫번쨰 인자는 조회할 페이지의 번호, 두 번쨰 인자는 한 페이지당 조회할 데이터의 갯수.
         Pageable pageable = PageRequest.of(0, 5);
         Page<Item> itemPagingResult =
                 itemRepository.findAll(booleanBuilder, pageable);
