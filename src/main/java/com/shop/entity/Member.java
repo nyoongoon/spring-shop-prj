@@ -39,7 +39,8 @@ public class Member {
         member.setAddress(memberFormDto.getAddress());
         String password = passwordEncoder.encode(memberFormDto.getPassword()); // 시큐리티 설정 클래스에서 등록한 BCryptPasswordEncoder Bean
         member.setPassword(password);
-        member.setRole(Role.USER);
+        //member.setRole(Role.USER);
+        member.setRole(Role.ADMIN); //테스트 용
         return member;
     }
 }
